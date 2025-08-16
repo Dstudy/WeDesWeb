@@ -67,7 +67,7 @@ function initializeCardPositions() {
       end: "max",
       scrub: 2,
       pin: true,
-      markers: true,
+      markers: false,
       onUpdate(self) {
         if (!isDone && self.progress >= 0.8) isDone = 1;
         else isDone = 0;

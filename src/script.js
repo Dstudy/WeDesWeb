@@ -125,7 +125,7 @@ const showDemo = () => {
         end: "+=50%",
         scrub: 2,
         pin: true,
-        markers: true,
+        markers: false,
         onLeave: () => tl1.play(0), // when you scroll past the end
         onLeaveBack: () => tl1.pause(0), // when you scroll back above the end
       },

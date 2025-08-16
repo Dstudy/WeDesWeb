@@ -82,7 +82,7 @@ tl1 = gsap.timeline({
     pin: true,
     start: "top top",
     end: "+=150%",
-    markers: true,
+    markers: false,
   },
 });
 
@@ -106,7 +106,7 @@ tl2 = gsap.timeline({
     pin: true,
     start: "top top",
     end: "+=100%",
-    markers: true,
+    markers: false,
   },
 });
 
@@ -120,7 +120,7 @@ tl3 = gsap.timeline({
     pin: true,
     start: "top top",
     end: "+=100%",
-    markers: true,
+    markers: false,
   },
 });
 
