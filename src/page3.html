@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Letter Animation</title>
+    <link rel="stylesheet" href="/src/style3.css"/>
+</head>
+<body>
+    <overlay-menu></overlay-menu>
+    <div class="loop-text" aria-hidden="true">
+      <div class="loop-track"></div>
+    </div>
+    <div class="team-container">
+        <div class="team-card-container">
+          <!-- CARD 1 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/COanh.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Thị Kim Oanh</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Từ cô tập sự ngơ cho tới một phần đồng hành với chungtoithietke là một câu chuyện siêu yêu.
+                Yêu việc được sáng tạo, học hành kĩ năng mình mê. 
+                Yêu những đồng chí bạn chân thành và sẵn sàng ngốc nghếch, thử nghiệm thứ mới với nhau nhiều lúc.
+                Yêu sự mắn vì mỗi cháu một tính, một style mà hợp nhau đến thế.
+                Yêu vì đã gặp và được “lớn” cùng nhau trong thiết kế và có cho mình những mối quan hệ chất lượng vàng
+                Tui được dẫn dắt, được thử, được ghi nhận, được trở thành người hỗ trợ, là thành viên, mảnh ghép trong mái nhà xây bởi sự vun đắp, cố gắng của mỗi nhân sự!
+                "
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 2 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/Han.png" alt=""></div>
+              <div class="member-name">Nguyễn Thị Hân</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Từ cô tập sự ngơ cho tới một phần đồng hành với chungtoithietke là một câu chuyện siêu yêu.
+                Yêu việc được sáng tạo, học hành kĩ năng mình mê. 
+                Yêu những đồng chí bạn chân thành và sẵn sàng ngốc nghếch, thử nghiệm thứ mới với nhau nhiều lúc.
+                Yêu sự mắn vì mỗi cháu một tính, một style mà hợp nhau đến thế.
+                Yêu vì đã gặp và được “lớn” cùng nhau trong thiết kế và có cho mình những mối quan hệ chất lượng vàng
+                Tui được dẫn dắt, được thử, được ghi nhận, được trở thành người hỗ trợ, là thành viên, mảnh ghép trong mái nhà xây bởi sự vun đắp, cố gắng của mỗi nhân sự!
+                "
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 3 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/Nhat.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Trọng Nhật</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Code is poetry in motion. Every line we write has the power to change someone's day, solve a problem, or open up new possibilities. That's what drives me every single day."
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 4 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/Giang.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Thị Giang</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                Mình cảm thấy rất biết ơn WeDes. Cũng là một "em bé" chập chững biết đi trong mảng này, mình cũng nhiều điều chưa được biết, được làm nhưng sau khi vào đây, mình cảm thấy mọi người rất tuyệt vời, rất đáng yêu, dễ mến, luôn hỗ trợ và trao những kiến thức cho mình. Mình được học, được thực hành, được trainning, sáng tạo, được thử và được sửa sai, góp ý rất nhiều và mình thấy mình đã trải nghiệm được thêm rất nhiều điều về thiết kế, những dự án, những sự kết hợp với nhóm, ban khác và mang chính những điều chúng mình làm được ra với tất cả mọi người. Có lẽ, những buổi đi chơi, buổi họp là khi mình được cảm thấy gắn bó, yêu team nhất, chúng mình đã cùng nhau đi qua cùng nhau phát triển và "lớn lên". Mình rất yêu team, yêu mọi người, yêu những giá trị chỉ WeDes có
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 5 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/Thao.jpeg" alt=""></div>
+              <div class="member-name">Nguyễn Bá Việt Thao</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Khám phá bản thân ở nhiều khía cạnh khác nhau. Ban đầu, mình chỉ hiểu đơn giản thiết kế là làm sao tạo ra một ấn phẩm sao cho đẹp...Sau được training, chia sẻ, trải nghiệm một thiết kế không chỉ đẹp mà còn truyền tải được nội dung được ẩn chứa sâu trong đó.
+Chúng tôi thiết kế giúp mình gặp được những người rất tuyệt vời. Mọi người luôn gắn kết, nhiệt tình, sẵn sàng luôn cho mình thử sức, học hỏi cũng như trau dồi mà không ngại ngần"
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 6 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/DD.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Danh Dương</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Kĩ năng được cải thiện. Có thêm nhiều trải nghiệm. Đầu tư thời gian với WeDes chỉ có lời không có lỗ. Ngoài ra wedes tôi luyện cho mình một tinh thần thép, deadline dí tới liên tục (vì sát dl mới làm) ở cường độ cao. "
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 7 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/Thảo.jpg" alt=""></div>
+              <div class="member-name">Đỗ Thị Phương Thảo</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Mình cảm thấy bản thân trưởng thành và thay đổi nhiều về mặt kỹ năng lẫn tư duy thiết kế. Mình nhận ra, để thiết kế ra một ấn phẩm đẹp không hề dễ dàng, cần phải qua rất nhiều lần “chỉnh sửa” và “góp ý” mới có thể hoàn thiện được. Và, WeDesign đã cho mình cơ hội đó, được thử làm nhiều lần, được sai, để mình cải thiện dần hơn những ấn phẩm của mình. Điều này, siêu giúp ích cho mình trong những dự án trên trường lớp, và cả trong công việc. Rất cảm ơn WeDesign luôn ạ!!!"
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 8 -->
+          <div class="team-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/HD.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Huy Hoàng Dương</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "Mình thấy vui !"
+              </div>
+            </div>
+          </div>
+    
+          <!-- CARD 9 -->
+          <div class="team-card top-card" onclick="toggleCard(this)">
+            <div class="member-info">
+              <div class="member-photo"><img src="/img/CDung.jpg" alt=""></div>
+              <div class="member-name">Nguyễn Thị Thùy Dung</div>
+            </div>
+            <div class="quote-content">
+              <div class="quote-text">
+                "The backend is like the foundation of a house - you don't see it, but everything depends on it being solid, reliable, and well-architected. That's where the real magic happens."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="overlay" onclick="closeAllCards()"></div>
+</body>
+<script type="module" src="/src/components/overlay-menu.js"></script>
+<script type="module" src="script3.js"></script>
+</html>

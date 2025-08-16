@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Letter Animation</title>
+</head>
+<body>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Unbounded:wght@200..900&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+
+    }
+
+    h1{
+      font-size: 4rem;
+      font-weight: 700;
+      font-family: 'Unbounded';
+    }
+
+    section{
+      position: relative;
+      width: 100vw;
+      height: 100svh;
+      padding: 2rem;
+      overflow: hidden;
+
+    }
+
+    .hero h1{
+      width: 35%;
+      text-align: center;
+    }
+
+    .hero{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #FFA2AE;
+      color: #ED243E;
+    }
+
+    .footer{
+      background-color: #4564E1;
+      color: white;
+    }
+
+
+    .footer-content{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+    
+    .footer-content *{
+      pointer-events: auto;
+    }
+
+    .footer h1{
+      width: 35%;
+      font-size: 2.8rem;
+      text-align: center;
+    }
+
+
+    .object-container{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Quicksand';
+    }
+
+    .object{
+      position: absolute;
+      width: 270px;
+      height: 350px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      background-color: #fff;
+      color: black;
+      padding: 2rem 2rem;
+      border-radius: 1rem;
+      cursor: grab;
+      user-select: none;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .object .star {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 150px;
+  height: 150px;
+  opacity: 20%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+    .small-object{
+      position: absolute;
+      width: max-content;
+      font-size: 2rem;
+      font-weight: 500;
+      background-color: #fff;
+      color: black;
+      padding: 1rem 1rem;
+      border-radius: 10rem;
+      cursor: grab;
+      user-select: none;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .object:active{
+      cursor: grabbing;
+      .star{
+        opacity: 1;
+        z-index: -11;
+      }
+    }
+
+    .object:nth-child(1){
+      background-color: #FFA2AE;
+    }
+
+    .object:nth-child(2){
+      background-color: #FFDFD7;
+    }
+
+    .object:nth-child(3){
+      background-color: #FFECF2;
+    }
+
+    /* Center drop zone (invisible by default; toggle .show to debug) */
+.center-drop-zone {
+  position: absolute;
+  inset: 30% 30%; /* middle 40% x 40% */
+  border: 2px dashed rgba(255,255,255,0); /* invisible */
+  pointer-events: none;
+  z-index: 1;
+}
+.center-drop-zone.show { /* optional: visualize */
+  border-color: rgba(255,255,255,0.4);
+  border-radius: 1rem;
+}
+
+.center-drop-zone::after {
+  content: "Thả thẻ vào đây";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  pointer-events: none; /* won’t block drag/drop */
+}
+
+/* Popup overlay */
+.popup.hidden { display: none; }
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+.popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+.popup-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(90vw, 1100px);   /* up to 1200px wide, nearly full viewport */
+  height: min(90vh, 500px);   /* up to 800px tall, nearly full viewport */
+  transform: translate(-50%, -50%);
+  background: #FFA2AE;
+  color: #ffffff;
+  border-radius: 1rem;          /* more breathing room */
+  overflow: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+}
+
+.popup-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 equal halves */
+  width: 100%;
+  height: 100%;
+}
+
+.popup-text.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F85B6F;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  margin: auto; /* ensure centering */
+  max-width: 65%;
+  max-height: 100%;
+  text-align: left;
+
+  font-family: 'Quicksand';
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.popup-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  overflow: hidden; /* ensure cover crop works */
+}
+
+.popup-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-image-wrapper #popup-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.popup-image-wrapper #popup-img.shift-left {
+  transform: translateX(-40px);
+}
+.popup-image-wrapper #popup-img.shift-right {
+  transform: translateX(-20px);
+}
+.popup-image-wrapper #popup-img.shift {
+  transform: translateX(20px);
+}
+
+.popup-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* frame stays fixed */
+}
+
+.star-frame {
+  position: absolute;
+   top: 30%;        /* push star down (closer to bottom of frame) */
+  left: 75%;       /* center horizontally */
+  width: 100px;  /* small size */
+  height: 100px;
+  object-fit: contain;
+  pointer-events: none; /* star won't block clicks */
+  z-index: 2; /* above frame */
+}
+
+
+    @media (max-width: 1000px) {
+      h1{
+        font-size: 2rem;
+      }      
+      .hero h1, .footer h1{
+        width: 100%;
+      }
+      .object{
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <overlay-menu></overlay-menu>
+    <section class="hero">
+      <h1>Định hướng phát triển của WeDesign</h1>
+    </section>
+
+    <section class="footer">
+      <div class="object-container">
+        <div class="center-drop-zone"></div>
+        <div class="object"><p>Tổ chức workshop về thiết kế</p> <img class="star" src="/img/star3.png" alt=""></div>
+        <div class="object"><p>Phối hợp với các ban khác tổ chức workshop mở rộng cho thư viện/cộng đồng</p> <img class="star" src="/img/star3.png" alt=""></div>
+        <div class="object"><p>Chia sẻ kiến thức thiết kế cho nội bộ thư viện</p> <img class="star" src="/img/star3.png" alt=""></div>
+
+        <div class="object-container">
+          <div class="small-object">#Chungtoithietke</div>
+          <div class="small-object">#ToiyeuWeDes</div>
+          <div class="small-object">#WeDessomot</div>
+          <div class="small-object">#Chaydlvuiquadi</div>
+          <div class="small-object">#Chungtoithietke10diem</div>
+        </div>
+        <div class="footer-content">
+          <h1>Nếu bạn phù hợp với WeDes thì hãy gia nhập với bọn tớ</h1>
+        </div>
+      </div>
+
+    </section>
+
+      <!-- Popup overlay -->
+    <div id="card-popup" class="popup hidden" aria-hidden="true">
+  <div class="popup-backdrop"></div>
+  <div class="popup-panel" role="dialog" aria-modal="true">
+    <div class="popup-content">
+      <div class="popup-text card"></div>
+      <div class="popup-image">
+        <div class="popup-image-wrapper">
+          <img id="popup-img" src="/src/team1.png" alt="Team image">
+          <img class="popup-frame" src="/img/frame.png" alt="Frame overlay">
+          <img class="star-frame" src="/img/star.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="module" src="/src/components/overlay-menu.js"></script>
+<script type="module" src="/src/script4.js">
+  
+</script>
+</html>

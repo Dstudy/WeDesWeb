@@ -1,0 +1,233 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Unbounded:wght@200..900&display=swap');  
+
+  *{
+    box-sizing: border-box; 
+  }
+  
+  .team-container{
+    width: 100%;
+    height: 100%
+  }
+  
+  .team-card-container {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  
+  .team-card {
+    position: absolute;
+    background: #236BFE;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 1rem 1rem 1rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+  
+    /* Base size (collapsed) */
+    width: 160px;
+    height: 210px;
+  
+    will-change: transform, left, top, width;
+    transition:
+      left 0.4s cubic-bezier(0.175,0.885,0.32,1.275),
+      top 0.4s cubic-bezier(0.175,0.885,0.32,1.275),
+      width 0.4s cubic-bezier(0.175,0.885,0.32,1.275),
+      box-shadow 0.4s,
+      transform 0.4s,
+      background 0.4s;
+
+    /* Layout: vertical when collapsed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .75rem;
+    font-family: 'Quicksand';
+  }
+  
+  .team-card:hover { transform: translateY(-20px) scale(1.05); }
+  
+  .team-card.expanded {
+    transform: scale(1.1);
+    z-index: 10;
+    background: #236BFE;
+    color: #fff;
+  
+    /* Switch to horizontal layout when expanded */
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+  
+    /* Keep fixed height; width will animate */
+    height: 210px;
+    min-width: 460px;
+    /* Optional: pause floating while expanded */
+    animation-play-state: paused;
+  }
+  
+  
+  .member-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px; /* ensures avatar + name area stays visible when expanding */
+    flex: 0 0 auto;
+  }
+  
+  .member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255,255,255,0.06);
+    object-fit: unset;
+  }
+
+  .member-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* clip to circle */
+  object-fit: cover;  /* fill and crop */
+  display: block;
+}
+
+  
+  .team-card:hover .member-photo {
+    transform: scale(1.08);
+  }
+  
+  .member-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-top: .5rem;
+    transition: color 0.3s ease;
+    text-align: center;
+    line-height: 1.2;
+  }
+  
+  .team-card.expanded .member-name { color: #ffffff; }
+  
+  /* RIGHT-SIDE expanding content */
+  .quote-content {
+    flex: 0 1 auto;
+    max-width: 0;           /* collapsed */
+    opacity: 0;             /* collapsed */
+    overflow: hidden;
+    padding-left: 0;        /* collapsed */
+    transition: max-width 0.5s ease, opacity 0.3s ease, padding-left 0.3s ease;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+  
+  .quote-content.show {
+    max-width: 320px;       /* expands horizontally */
+    opacity: 1;
+    padding-left: 1rem;     /* spacing from left segment */
+  }
+  
+  .quote-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    height: 100%;                   /* fill the right panel vertically */
+    max-height: 100%;               /* don't exceed card height */
+    overflow-y: auto;               /* enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* smooth on iOS */
+    overscroll-behavior: contain;   /* prevent parent page from hijacking scroll at edges */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* optional: avoid accidental text selection triggering parent click */
+    cursor: default;
+    user-select: text;
+  }
+  
+  /* Overlay */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease;
+  }
+  .overlay.show { opacity: 1; visibility: auto; }
+  
+  /* Staggered float delays (optional) */
+  .team-card:nth-child(1) { animation-delay: 0s; }
+  .team-card:nth-child(2) { animation-delay: 0.5s; }
+  .team-card:nth-child(3) { animation-delay: 1s; }
+  .team-card:nth-child(4) { animation-delay: 1.5s; }
+  .team-card:nth-child(5) { animation-delay: 2s; }
+  .team-card:nth-child(6) { animation-delay: 2.5s; }
+  .team-card:nth-child(7) { animation-delay: 3s; }
+  .team-card:nth-child(8) { animation-delay: 3.5s; }
+  .team-card:nth-child(9) { animation-delay: 4s; }
+  
+  @media (max-width: 768px) {
+    .team-card-container { height: 1200px; padding: 1rem; }
+    h1 { font-size: 2rem; margin-bottom: 2rem; }
+    .team-card { width: 180px; height: 220px; }
+    .team-card.expanded { height: 220px; min-width: 380px; }
+    .quote-content.show { max-width: 260px; }
+  }
+
+  .team-card.floating {
+    position: fixed !important;
+    left: var(--fx-left, 0px);
+    top: var(--fx-top, 0px);
+    z-index: 1000;            /* above .overlay (5) */
+    transform: none !important; /* neutralize GSAP transforms while floating */
+  }
+
+  /* Centered loop text layer (behind cards) */
+.loop-text {
+    position: fixed;
+    inset: 0;                 /* full viewport for easy centering */
+    display: grid;
+    place-items: center;      /* center the track */
+    z-index: -10;               /* below cards, above background */
+    pointer-events: none;
+    user-select: none;
+    font-family: 'Unbounded';
+  }
+  
+  .loop-track {
+    white-space: nowrap;
+    will-change: transform;
+    transform: translateZ(-10);
+    opacity: 0.5;            /* subtle */
+    line-height: 1;
+
+  }
+  
+  .loop-item {
+    font-weight: 550;
+    font-size: clamp(24px, 7vw, 76px);
+    margin-right: 10rem;       /* spacing between repeats */
+  }
+  
+  /* ensure cards are above the loop text but below overlay */
+  .team-card { z-index: 2; }
+  .team-card.expanded { z-index: 10; }
+  /* your overlay is already z-index: 5, so it will dim the loop too */
+  
+  
