@@ -18,6 +18,7 @@ export default defineConfig({
         page6: "src/bonding.html",
         page7: "src/reason.html",
         page8: "src/showcase.html",
+        page9: "src/project2.html",
       },
     },
   },

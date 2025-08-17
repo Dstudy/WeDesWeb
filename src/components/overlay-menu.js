@@ -12,6 +12,7 @@ class OverlayMenu extends HTMLElement {
           :host{
             --bg: #fff;
             --fg: #0b0b0b;
+            --mg: #0b0b0b;
             --line: #bdbdbd;
             --hover-bg: #000;
             --hover-fg: #fff;
@@ -25,19 +26,19 @@ class OverlayMenu extends HTMLElement {
             --icon-w: clamp(16px, 6vw, 22px);
             --icon-h: clamp(1.2px, .45vw, 3px);
             --bar-gap: calc(var(--btn) * .14);
-            --overlay-top-pad: 55px; 
+            --overlay-top-pad: 65px; 
 
             font-family: 'Unbounded';
             position: relative; z-index: 100000;    
           }
           /* Hamburger */
   .menu-btn{
-    position: fixed; top:12px; left:14px; z-index:100001;
+    position: fixed; top:25px; left:24px; z-index:100001;
     width: var(--btn); height: var(--btn);
     display:grid; place-items:center; background:transparent; border:0; cursor:pointer;
   }
   .menu-btn span, .menu-btn::before, .menu-btn::after{
-    content:""; display:block; width: var(--icon-w); height: var(--icon-h); background: var(--fg);
+    content:""; display:block; width: var(--icon-w); height: var(--icon-h); background: var(--mg);
     transition: transform .25s ease, opacity .2s ease, background .2s ease;
     
   }
@@ -109,6 +110,7 @@ class OverlayMenu extends HTMLElement {
         <div class="menu-overlay" id="overlay-menu" aria-hidden="true">
           <nav role="navigation">
             <ul class="menu-list">
+            <li class="menu-item"><a class="menu-link" href="/WeDesWeb/index.html">Trang chủ</a></li>
               <li class="menu-item"><a class="menu-link" href="/WeDesWeb/src/page2.html">GIỚI THIỆU</a></li>
               <li class="menu-item"><a class="menu-link" href="/WeDesWeb/src/showcase.html">SHOWCASE</a></li>
               <li class="menu-item"><a class="menu-link" href="/WeDesWeb/src/bonding.html">TEAMBONDING</a></li>

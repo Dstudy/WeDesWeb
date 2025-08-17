@@ -214,7 +214,6 @@
     white-space: nowrap;
     will-change: transform;
     transform: translateZ(-10);
-    opacity: 0.5;            /* subtle */
     line-height: 1;
 
   }
@@ -229,5 +228,7 @@
   .team-card { z-index: 2; }
   .team-card.expanded { z-index: 10; }
   /* your overlay is already z-index: 5, so it will dim the loop too */
+  
+
   
   
