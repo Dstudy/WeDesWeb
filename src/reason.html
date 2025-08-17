@@ -9,6 +9,39 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Unbounded:wght@200..900&display=swap');
 
+    .nav-bar{
+  position: fixed;          /* keep it pinned */
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 34px;
+  font-family: 'Unbounded';
+  z-index: 99998;           /* below overlay (100000) and button (100001) */
+  h2{
+      font-weight: normal;
+    }
+}
+.nav-bar .next-btn{
+    scale: 1;
+  }
+
+  .nav-wrapper{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    flex-shrink: 0;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgb(255, 255, 255);
+  }
+
+  overlay-menu {
+  --mg: #ffffff; /* white */
+}
+
+
     body{
         background-color: #4564E1;
     }
@@ -99,7 +132,13 @@
 </style>
 <body>
 <!-- partial:index.partial.html -->
-<overlay-menu></overlay-menu>
+<div class="nav-bar">
+    <overlay-menu></overlay-menu>
+    <div class="nav-wrapper">
+        <h2>Lý do</h2>
+        <a href="page4.html"><img class="next-btn" src="/img/Arrow.svg" alt=""></a>  
+    </div>
+</div>
 <div class="container">
     <div class="text-container">
         <h1 class="split">LÝ DO <br> NÊN THAM GIA <br> WEDESIGN</h1>

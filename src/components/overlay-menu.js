@@ -38,9 +38,11 @@ class OverlayMenu extends HTMLElement {
     display:grid; place-items:center; background:transparent; border:0; cursor:pointer;
   }
   .menu-btn span, .menu-btn::before, .menu-btn::after{
-    content:""; display:block; width: var(--icon-w); height: var(--icon-h); background: var(--mg);
+    content:""; display:block; width: var(--icon-w); height: var(--icon-h); background: var(--fg);
     transition: transform .25s ease, opacity .2s ease, background .2s ease;
-    
+  }
+  .menu-btn span{
+  background: var(--mg);
   }
   .menu-btn::before{ transform: translateY(calc(-1 * var(--bar-gap))); }
   .menu-btn::after{  transform: translateY(var(--bar-gap)); }

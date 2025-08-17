@@ -12,11 +12,41 @@
             box-sizing: border-box;
         }
 
+        .nav-bar{
+  position: fixed;          /* keep it pinned */
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 34px;
+  font-family: 'Unbounded';
+  z-index: 99998;           /* below overlay (100000) and button (100001) */
+  h2{
+      font-weight: normal;
+    }
+}
+.nav-bar .next-btn{
+    filter: brightness(0) invert(0);
+    scale: 1;
+  }
+
+  .nav-wrapper{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    flex-shrink: 0;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+    color: black;
+    
+  }
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 100px 20px;
         }
 
         .header {
@@ -204,7 +234,13 @@
     </style>
 </head>
 <body>
+    <div class="nav-bar">
     <overlay-menu></overlay-menu>
+    <div class="nav-wrapper">
+        <h2>Teambonding</h2>
+        <a href="bonding.html"><img class="next-btn" src="/img/Arrow.svg" alt=""></a>   
+    </div>
+</div>
     <div class="header">
         <h1 class="main-title">SHOWCASE</h1>
         <div class="line"></div>
