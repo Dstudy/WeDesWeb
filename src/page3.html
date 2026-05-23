@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSAP Letter Animation</title>
     <link rel="stylesheet" href="/src/style3.css"/>
+    <style>
+      .rotate-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#0b0b0f;color:#fff;z-index:100002;text-align:center;padding:2rem}
+      .rotate-card{max-width:28rem;width:90vw;border-radius:16px;padding:2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+      .rotate-icon{font-size:3rem;margin-bottom:.75rem}
+      .rotate-title{font-size:clamp(1.25rem,4vw,1.75rem);font-weight:700}
+      .rotate-sub{opacity:.9;margin-top:.5rem;font-size:clamp(.95rem,3.2vw,1.05rem)}
+      @media(orientation:portrait)and(max-width:1024px){.rotate-overlay{display:flex}}
+    </style>
 </head>
 <body>
+  <div class="rotate-overlay">
+    <div class="rotate-card">
+      <div class="rotate-icon">🔄</div>
+      <div class="rotate-title">Please rotate your device</div>
+      <div class="rotate-sub">This experience is best viewed in landscape.</div>
+    </div>
+  </div>
     <div class="nav-bar">
     <overlay-menu></overlay-menu>
     <div class="nav-wrapper">  
