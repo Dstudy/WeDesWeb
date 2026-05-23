@@ -220,6 +220,63 @@
     .quote-content.show { max-width: 260px; }
   }
 
+  @media (orientation: landscape) and (max-height: 500px) {
+    .nav-bar {
+      padding: 8px 20px;
+    }
+
+    .nav-bar h2 {
+      font-size: 0.8rem;
+    }
+
+    .nav-bar .next-btn {
+      width: 20px;
+    }
+
+    .team-card-container {
+      height: calc(100dvh - 48px);
+      padding: 0.5rem;
+    }
+
+    .team-card {
+      width: 120px;
+      height: 150px;
+    }
+
+    .team-card.expanded {
+      height: 150px;
+      min-width: 340px;
+    }
+
+    .member-info {
+      min-width: 110px;
+    }
+
+    .member-photo {
+      width: 76px;
+      height: 76px;
+    }
+
+    .member-name {
+      font-size: 0.75rem;
+      margin-top: 0.3rem;
+    }
+
+    .quote-content.show {
+      max-width: 220px;
+    }
+
+    .quote-text {
+      font-size: 0.78rem;
+      padding: 0.5rem 0.6rem;
+      line-height: 1.45;
+    }
+
+    .loop-item {
+      font-size: clamp(16px, 4.5vw, 36px);
+    }
+  }
+
   .team-card.floating {
     position: fixed !important;
     left: var(--fx-left, 0px);

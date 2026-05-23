@@ -128,6 +128,53 @@
         background-color: #FFA2AE;
       }
 
+      @media (orientation: landscape) and (max-height: 600px) {
+        .nav-bar {
+          padding: 12px 20px;
+        }
+
+        .container {
+          height: 100dvh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .text-container {
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .split {
+          font-size: clamp(1.8rem, 6vw, 4rem);
+          text-align: center;
+        }
+
+        .panel {
+          min-height: 100dvh;
+          padding: 70px 2rem 2rem;
+          gap: 1rem;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .card {
+          width: min(80vw, 560px);
+          padding: 32px 48px;
+          text-align: center;
+        }
+
+        .card p {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+
+        .text-run {
+          font-size: 3.5rem;
+        }
+      }
+
 
 </style>
 <body>
@@ -135,7 +182,7 @@
 <div class="nav-bar">
     <overlay-menu></overlay-menu>
     <div class="nav-wrapper">
-        <h2>Lý do</h2>
+        <h2>Định hướng</h2>
         <a href="page4.html"><img class="next-btn" src="/img/Arrow.svg" alt=""></a>  
     </div>
 </div>

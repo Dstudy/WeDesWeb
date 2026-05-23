@@ -280,11 +280,62 @@
     @media (max-width: 1000px) {
       h1{
         font-size: 2rem;
-      }      
+      }
       .hero h1, .footer h1{
         width: 100%;
       }
       .object{
+        font-size: 1rem;
+      }
+    }
+
+    /* Landscape mobile — viewport height ≤ 500px (phone on its side) */
+    @media (orientation: landscape) and (max-height: 500px) {
+      section {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero h1 {
+        width: 65%;
+      }
+
+      .footer h1 {
+        width: 65%;
+        font-size: 1.3rem;
+      }
+
+      .object {
+        width: 160px;
+        height: 155px;
+        font-size: 0.82rem;
+        padding: 0.75rem;
+      }
+
+      .object .star {
+        width: 70px;
+        height: 70px;
+      }
+
+      .small-object {
+        font-size: 1.1rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .popup-panel {
+        width: min(95vw, 760px);
+        height: min(92vh, 320px);
+      }
+
+      .popup-text.card {
+        font-size: 1rem;
+        max-width: 80%;
+      }
+
+      .center-drop-zone::after {
         font-size: 1rem;
       }
     }

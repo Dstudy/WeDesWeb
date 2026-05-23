@@ -259,5 +259,18 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeAllCards();
 });
 
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    closeAllCards();
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    if (tl) { tl.kill(); tl = null; }
+    isDone = 0;
+    initializeCardPositions();
+    initLoopText();
+  }, 250);
+});
+
 window.toggleCard = toggleCard;
 window.closeAllCards = closeAllCards;
