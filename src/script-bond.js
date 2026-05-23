@@ -897,6 +897,19 @@ window.addEventListener("resize", () => {
     updateVisibleItems();
   }
 });
+// Dismiss drag hint on first interaction or after timeout
+const dragHint = document.getElementById('dragHint');
+let dragHintHidden = false;
+function hideDragHint() {
+  if (dragHintHidden || !dragHint) return;
+  dragHintHidden = true;
+  dragHint.classList.add('hide');
+  setTimeout(() => { if (dragHint.parentNode) dragHint.parentNode.removeChild(dragHint); }, 500);
+}
+setTimeout(hideDragHint, 6000);
+container.addEventListener('mousedown', hideDragHint, { once: true });
+container.addEventListener('touchstart', hideDragHint, { once: true });
+
 // Add this right before the // Initialize comment
 function initializeStyles() {
   updateBorderRadius();

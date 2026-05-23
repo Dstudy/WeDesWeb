@@ -31,6 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10000;
 
     h1{
       font-size: 5rem
@@ -298,7 +299,7 @@
   justify-content: center;
   background: #0b0b0f;
   color: #fff;
-  z-index: 9999;            /* above everything (loader, etc.) */
+  z-index: 9999;
   text-align: center;
   padding: 2rem;
 }
@@ -319,24 +320,50 @@
 
 /* Portrait gate: hide the experience, show the overlay */
 @media (orientation: portrait) {
-  /* Hide your interactive sections in portrait */
   .scroll-section,
   .wrapper,
   .content,
   .gallery-section {
     display: none !important;
   }
-
-  /* Show the rotate overlay */
-  .rotate-overlay {
-    display: flex;
-  }
+  .rotate-overlay { display: flex; }
+  .scroll-hint { display: none !important; }
 }
 
 /* Optional: only gate phones/smaller tablets in portrait */
 @media (orientation: portrait) and (max-width: 1024px) {
   .rotate-overlay { display: flex; }
 } 
+/* ── Scroll hint ── */
+.scroll-hint {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  color: #000;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  animation: scrollHintBounce 1.5s ease-in-out infinite;
+}
+.scroll-hint-label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.scroll-hint.is-hidden { opacity: 0; }
+@keyframes scrollHintBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
 @media (orientation: landscape) and (max-height: 480px) {
   .text-container{
     width: 48vw;

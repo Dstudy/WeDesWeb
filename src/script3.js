@@ -86,6 +86,50 @@ function initializeCardPositions() {
   });
 }
 
+/* --------- RANDOM SINGLE-CARD WIGGLE --------- */
+let wiggleTimer = null;
+let wiggleCard = null;
+
+function startCardWiggle(card) {
+  card.style.setProperty("--wiggle-a", (3 + Math.random() * 3).toFixed(1) + "px");
+  card.style.setProperty("--wiggle-dur", (0.38 + Math.random() * 0.22).toFixed(2) + "s");
+  card.classList.add("wiggling");
+}
+
+function stopCardWiggle(card) {
+  card.classList.remove("wiggling");
+  card.style.removeProperty("--wiggle-a");
+  card.style.removeProperty("--wiggle-dur");
+}
+
+function tickWiggle() {
+  if (wiggleCard) { stopCardWiggle(wiggleCard); wiggleCard = null; }
+  if (document.querySelector(".team-card.expanded")) return;
+
+  const cards = Array.from(document.querySelectorAll(".team-card"));
+  const pick = cards[Math.floor(Math.random() * cards.length)];
+  startCardWiggle(pick);
+  wiggleCard = pick;
+
+  const wiggleDur = 900 + Math.random() * 900;
+  const pauseDur  = 1200 + Math.random() * 2000;
+  wiggleTimer = setTimeout(() => {
+    if (wiggleCard) { stopCardWiggle(wiggleCard); wiggleCard = null; }
+    wiggleTimer = setTimeout(tickWiggle, pauseDur);
+  }, wiggleDur);
+}
+
+function startRandomWiggle() {
+  if (wiggleTimer) return;
+  wiggleTimer = setTimeout(tickWiggle, 1200);
+}
+
+function stopRandomWiggle() {
+  clearTimeout(wiggleTimer);
+  wiggleTimer = null;
+  if (wiggleCard) { stopCardWiggle(wiggleCard); wiggleCard = null; }
+}
+
 /* --------- EXPAND/COLLAPSE LEFT→RIGHT --------- */
 const COLLAPSED_WIDTH = 160; // match CSS base width
 
@@ -122,6 +166,7 @@ function expandCard(card) {
   card.classList.add("expanded");
   quote.classList.add("show");
   overlay.classList.add("show");
+  stopRandomWiggle();
 
   // Compute a comfortable target width
   const desired = startW + Math.max(280, quote.scrollWidth + 40);
@@ -196,6 +241,7 @@ function collapseCard(card) {
       // Hide overlay when none expanded
       if (!document.querySelector(".team-card.expanded")) {
         overlay.classList.remove("show");
+        startRandomWiggle();
       }
     }
   };
@@ -254,6 +300,7 @@ window.addEventListener("load", () => {
   ScrollTrigger.getAll().forEach((t) => t.kill());
   setTimeout(initializeCardPositions, 100);
   initLoopText();
+  startRandomWiggle();
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeAllCards();
@@ -263,12 +310,14 @@ let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
+    stopRandomWiggle();
     closeAllCards();
     ScrollTrigger.getAll().forEach((t) => t.kill());
     if (tl) { tl.kill(); tl = null; }
     isDone = 0;
     initializeCardPositions();
     initLoopText();
+    startRandomWiggle();
   }, 250);
 });
 

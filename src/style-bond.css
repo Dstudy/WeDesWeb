@@ -605,3 +605,157 @@ h3 {
 overlay-menu {
   --mg: #ffffff; /* white */
 }
+
+/* Drag hint indicator */
+.drag-hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  z-index: 99990;
+  pointer-events: none;
+  opacity: 0;
+  animation: dragHintFadeIn 0.7s ease 1.2s forwards;
+}
+
+.drag-hint.hide {
+  animation: dragHintFadeOut 0.5s ease forwards !important;
+}
+
+.drag-hint-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+/* Frosted glass circle behind the center so arrows read on any image */
+.drag-hint-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.drag-hint-ring {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: ringExpand 2.2s ease-out infinite 1.9s;
+}
+
+.drag-hint-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+  z-index: 1;
+}
+
+.drag-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+  z-index: 1;
+}
+
+.drag-arrow.arrow-up {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 11px solid white;
+  transform: translate(-50%, calc(-50% - 26px));
+  animation: arrowPulseUp 1.8s ease-in-out infinite 1.9s;
+}
+
+.drag-arrow.arrow-right {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 11px solid white;
+  transform: translate(calc(-50% + 26px), -50%);
+  animation: arrowPulseRight 1.8s ease-in-out infinite 2.05s;
+}
+
+.drag-arrow.arrow-down {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 11px solid white;
+  transform: translate(-50%, calc(-50% + 26px));
+  animation: arrowPulseDown 1.8s ease-in-out infinite 2.2s;
+}
+
+.drag-arrow.arrow-left {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 11px solid white;
+  transform: translate(calc(-50% - 26px), -50%);
+  animation: arrowPulseLeft 1.8s ease-in-out infinite 2.35s;
+}
+
+@keyframes arrowPulseUp {
+  0%, 100% { transform: translate(-50%, calc(-50% - 26px)); opacity: 0.65; }
+  50% { transform: translate(-50%, calc(-50% - 40px)); opacity: 1; }
+}
+
+@keyframes arrowPulseRight {
+  0%, 100% { transform: translate(calc(-50% + 26px), -50%); opacity: 0.65; }
+  50% { transform: translate(calc(-50% + 40px), -50%); opacity: 1; }
+}
+
+@keyframes arrowPulseDown {
+  0%, 100% { transform: translate(-50%, calc(-50% + 26px)); opacity: 0.65; }
+  50% { transform: translate(-50%, calc(-50% + 40px)); opacity: 1; }
+}
+
+@keyframes arrowPulseLeft {
+  0%, 100% { transform: translate(calc(-50% - 26px), -50%); opacity: 0.65; }
+  50% { transform: translate(calc(-50% - 40px), -50%); opacity: 1; }
+}
+
+@keyframes ringExpand {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.drag-hint-label {
+  font-family: 'Unbounded';
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 7px 16px;
+  border-radius: 100px;
+}
+
+@keyframes dragHintFadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes dragHintFadeOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+}

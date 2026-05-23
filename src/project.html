@@ -35,6 +35,19 @@
 <!-- partial -->
 <script type="module" src="/src/components/overlay-menu.js"></script>
 <script type="module" src="./script-project.js"></script>
+<div class="scroll-hint" id="scroll-hint" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top:-14px;opacity:.35"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<script>
+(function(){
+  var h=document.getElementById('scroll-hint');
+  if(!h)return;
+  window.addEventListener('scroll',function(){
+    h.classList.toggle('is-hidden',window.scrollY>80);
+  },{passive:true});
+})();
+</script>
 
 </body>
 </html>
