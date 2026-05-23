@@ -88,7 +88,7 @@ tl1 = gsap.timeline({
 
 // move the inner wrapper up while the section is pinned
 tl1.to(".run-wrapper", { y: -1500, duration: 1, ease: "circ.out" }, 0);
-tl1.to(".star1", { rotation: 200, ease: "circ.out" }, "<");
+tl1.to(".star1", { rotation: 700, ease: "circ.out" }, "<");
 
 const cards = document.querySelectorAll(".card");
 cards.forEach((card, i) => {
@@ -105,13 +105,13 @@ tl2 = gsap.timeline({
     scrub: true,
     pin: true,
     start: "top top",
-    end: "+=100%",
+    end: "+=200%",
     markers: false,
   },
 });
 
 tl2.to(".run-wrapper", { y: 0, duration: 1, ease: "circ.out" }, 0);
-tl2.to(".star2", { rotation: 200, ease: "circ.out" }, "<");
+tl2.to(".star2", { rotation: 700, ease: "circ.out" }, "<");
 
 tl3 = gsap.timeline({
   scrollTrigger: {

@@ -1,0 +1,50 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Hàm nhân tương quan 2D
+def correlation2d(img, kernel):
+    h, w = img.shape
+    kh, kw = kernel.shape
+    pad_h, pad_w = kh // 2, kw // 2
+
+    # padding ảnh để giữ kích thước
+    padded = np.pad(img, ((pad_h, pad_h), (pad_w, pad_w)), mode='constant')
+    output = np.zeros_like(img, dtype=float)
+
+    # trượt kernel
+    for i in range(h):
+        for j in range(w):
+            region = padded[i:i+kh, j:j+kw]
+            output[i, j] = np.sum(region * kernel)  # correlation (không lật kernel)
+
+    return output
+
+# Load ảnh grayscale
+img = cv2.imread("your_image.jpg", cv2.IMREAD_GRAYSCALE)
+
+# Kernel Prewitt
+prewitt_x = np.array([[-1, 0, 1],
+                      [-1, 0, 1],
+                      [-1, 0, 1]])
+
+prewitt_y = np.array([[-1, -1, -1],
+                      [ 0,  0,  0],
+                      [ 1,  1,  1]])
+
+# Áp dụng nhân tương quan
+Ix = correlation2d(img, prewitt_x)
+Iy = correlation2d(img, prewitt_y)
+
+# Độ lớn gradient
+G = np.sqrt(Ix**2 + Iy**2)
+G = np.clip(G, 0, 255).astype(np.uint8)
+
+# Hiển thị kết quả
+plt.figure(figsize=(12,4))
+plt.subplot(1,3,1); plt.imshow(img, cmap='gray'); plt.title("Ảnh gốc")
+plt.subplot(1,3,2); plt.imshow(Ix, cmap='gray'); plt.title("Prewitt X")
+plt.subplot(1,3,3); plt.imshow(Iy, cmap='gray'); plt.title("Prewitt Y")
+plt.figure()
+plt.imshow(G, cmap='gray'); plt.title("Biên cạnh (Gradient magnitude)")
+plt.show()
